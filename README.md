@@ -1,144 +1,160 @@
-# DCORE - Adaptive Systems & Runtime Intelligence Platform
+# 🎬 DCORE Infrastructure Platform
 
-A cinematic infrastructure-grade intelligence platform built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.
+> Next-generation cinematic infrastructure-grade intelligence platform
+
+## ✨ Features
+
+- **Cinematic UI**: Glowing nodes, smooth animations, and atmospheric design
+- **Real-time Monitoring**: Live infrastructure status with instant alerts
+- **AI-Powered Analysis**: Advanced analytics and predictive insights
+- **7 Complete Routes**: Home, Systems, REDEN, About, Contact, Auth, Dashboard
+- **Production Ready**: Next.js 14, TypeScript, Tailwind CSS, Framer Motion
+- **Responsive Design**: Mobile-first approach with full responsiveness
+- **Dark Theme**: Premium dark UI with blue accents and glass morphism
 
 ## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+ and npm/yarn
 
 ### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/davix-tech/Dcore.name.ng.git
+cd Dcore.name.ng
+
+# Install dependencies
 npm install
-```
 
-### Development
-
-```bash
+# Run development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the platform.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Production Build
+## 📁 Project Structure
+
+```
+Dcore.name.ng/
+├── app/
+│   ├── layout.tsx           # Root layout
+│   ├── globals.css          # Global styles
+│   ├── providers.tsx        # React providers
+│   ├── page.tsx             # Home page
+│   ├── systems/page.tsx     # Infrastructure systems
+│   ├── reden/page.tsx       # REDEN runtime module
+│   ├── about/page.tsx       # About page
+│   ├── contact/page.tsx     # Contact form
+│   ├── auth/page.tsx        # Multi-step authentication
+│   └── dashboard/page.tsx   # Operational dashboard
+├── components/
+│   ├── global/
+│   │   ├── runtime-grid.tsx # SVG atmospheric grid
+│   │   └── navigation.tsx   # Responsive navbar
+│   └── ui/
+│       ├── glass-card.tsx   # Glassmorphism component
+│       ├── intelligence-node.tsx  # Animated node
+│       └── status-badge.tsx # Status indicators
+├── package.json             # Dependencies
+├── tsconfig.json            # TypeScript config
+├── tailwind.config.ts       # Tailwind configuration
+├── next.config.ts           # Next.js config
+└── README.md                # This file
+```
+
+## 🎨 Design System
+
+### Colors
+- **Dark**: `#0a0e27` (Primary background)
+- **Blue**: `#3b82f6` (Accent/Primary)
+- **Blue Glow**: `#60a5fa` (Hover/Secondary)
+- **Graphite**: `#1f2937` (Secondary background)
+
+### Components
+- **GlassCard**: Glassmorphism panels with hover effects
+- **IntelligenceNode**: Animated glowing nodes
+- **StatusBadge**: Real-time status indicators
+- **RuntimeGrid**: Atmospheric SVG background
+- **Navigation**: Responsive navigation bar
+
+## 🔧 Technologies
+
+- **Next.js 14**: React framework with App Router
+- **TypeScript**: Type-safe JavaScript
+- **Tailwind CSS**: Utility-first CSS framework
+- **Framer Motion**: Animation library
+- **React**: UI library
+
+## 📱 Pages
+
+### Home (`/`)
+Hero section with featured systems and call-to-action buttons.
+
+### Systems (`/systems`)
+5 infrastructure modules with status indicators and module information.
+
+### REDEN (`/reden`)
+Primary runtime module with real-time metrics and features.
+
+### About (`/about`)
+Mission, values, and company information.
+
+### Contact (`/contact`)
+Contact form and business information.
+
+### Auth (`/auth`)
+Multi-step authentication flow with email, verification, and password setup.
+
+### Dashboard (`/dashboard`)
+Operational intelligence with metrics, system status, and activities.
+
+## 🔐 Environment Variables
+
+Copy `.env.local.example` to `.env.local` and configure:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3000/api
+NEXT_PUBLIC_AUTH_ENABLED=true
+NEXT_PUBLIC_ANALYTICS_ENABLED=true
+NEXT_PUBLIC_MAINTENANCE_MODE=false
+```
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+```bash
+npm install -g vercel
+vercel
+```
+
+### Build for Production
 
 ```bash
 npm run build
 npm start
 ```
 
-## 🏗️ Architecture
+## 📊 Performance
 
-### Routes
+- ⚡ Optimized images and code splitting
+- 🎯 SEO-friendly metadata
+- 📱 Mobile-first responsive design
+- 🔍 Production-ready performance
 
-- **`/`** - Home with cinematic intro and featured systems
-- **`/systems`** - Infrastructure modules showcase
-- **`/reden`** - Primary runtime module with pricing and documentation
-- **`/about`** - Company mission and technology foundation
-- **`/contact`** - Contact form and team information
-- **`/auth`** - Multi-step authentication interface
-- **`/dashboard`** - Operational intelligence and metrics
+## 🤝 Contributing
 
-### Tech Stack
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-- **Frontend Framework**: Next.js 14 with App Router
-- **Language**: TypeScript with strict mode
-- **Styling**: Tailwind CSS with custom design tokens
-- **Animations**: Framer Motion for cinematic transitions
-- **UI Components**: Custom glass-morphism components
+## 📝 License
 
-## 🎨 Design System
+This project is open source and available under the MIT License.
 
-### Colors
+## 📞 Support
 
-- **Dark**: `#0a0e27` (dark-950), `#050810` (dark-900)
-- **Accent**: `#3b82f6` (blue-500)
-- **Glass**: `rgba(255, 255, 255, 0.1)` with backdrop blur
-
-### Animations
-
-- `glow-pulse` - Pulsing glow effect
-- `float` - Floating motion
-- `slide-in-left/right` - Directional slides
-- `fade-in` - Smooth fade transitions
-- `scale-in` - Scale animations
-
-### Components
-
-- **GlassCard** - Glassmorphism panels (sm, md, lg sizes)
-- **IntelligenceNode** - Animated glowing node
-- **StatusBadge** - Runtime status indicators
-- **RuntimeGrid** - Atmospheric background with SVG grids
-- **Navigation** - Responsive navbar with mobile menu
-
-## 📦 Project Structure
-
-```
-app/
-├── layout.tsx              # Root layout
-├── page.tsx                # Home page
-├── globals.css             # Global styles
-├── providers.tsx           # App providers
-├── systems/
-│   └── page.tsx            # Systems showcase
-├── reden/
-│   └── page.tsx            # REDEN module
-├── about/
-│   └── page.tsx            # About page
-├── contact/
-│   └── page.tsx            # Contact page
-├── auth/
-│   └── page.tsx            # Authentication
-└── dashboard/
-    └── page.tsx            # Dashboard
-
-components/
-├── global/
-│   ├── runtime-grid.tsx    # Background grid
-│   └── navigation.tsx      # Navigation bar
-└── ui/
-    ├── glass-card.tsx      # Glass panel component
-    ├── intelligence-node.tsx # Animated node
-    └── status-badge.tsx    # Status indicator
-```
-
-## 🎯 Features
-
-- ✨ Cinematic intro animations
-- 🌌 Atmospheric runtime grids
-- 💎 Premium glassmorphism UI
-- 🎬 Smooth Framer Motion transitions
-- 📱 Responsive mobile-first design
-- 🔐 Multi-step authentication flow
-- 📊 Operational dashboard
-- ⚡ Production-grade infrastructure aesthetic
-
-## 📝 Environment Variables
-
-Create a `.env.local` file:
-
-```env
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-```
-
-## 🚢 Deployment
-
-Ready for deployment on:
-
-- Vercel (recommended)
-- Netlify
-- AWS
-- Any Node.js hosting
-
-## 📄 License
-
-MIT License - Feel free to use for commercial projects
-
-## 👨‍💼 Support
-
-For inquiries or support:
-
-- Email: contact@dcore.io
-- Sales: sales@dcore.io
+For support, email hello@dcore.ng or visit our contact page.
 
 ---
 
-**DCORE** - Infrastructure-grade intelligence platform. Beyond Static Systems.
+**Built with ❤️ by DCORE Team**

@@ -1,12 +1,11 @@
-"use client";
+'use client'
 
-import { AnimatePresence } from "framer-motion";
-import React from "react";
+import { ReactNode } from 'react'
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({ children }: { children: ReactNode }) {
   return (
-    <AnimatePresence mode="wait">
+    <>
       {children}
-    </AnimatePresence>
-  );
+    </>
+  )
 }

@@ -1,176 +1,103 @@
-"use client";
+'use client'
 
-import { motion } from "framer-motion";
-import { GlassCard } from "@/components/ui/glass-card";
-import { StatusBadge } from "@/components/ui/status-badge";
-import { IntelligenceNode } from "@/components/ui/intelligence-node";
+import { motion } from 'framer-motion'
+import { GlassCard } from '@/components/ui/glass-card'
+import { StatusBadge } from '@/components/ui/status-badge'
 
-const container = {
+const containerVariants = {
   hidden: { opacity: 0 },
-  show: {
+  visible: {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
       delayChildren: 0.2,
     },
   },
-};
+}
 
-const item = {
+const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 },
+  },
+}
 
 export default function RedenPage() {
   return (
-    <div className="min-h-screen pt-24 pb-12">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Hero */}
-        <motion.section
-          initial={{ opacity: 0, y: -20 }}
+    <div className="relative min-h-screen pt-32 pb-20">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-20 text-center"
+          transition={{ duration: 0.5 }}
+          className="mb-16"
         >
-          <div className="flex justify-center mb-6">
-            <IntelligenceNode size="md" />
-          </div>
-          <h1 className="text-5xl md:text-6xl font-bold glow-text mb-4">REDEN</h1>
-          <p className="text-xl text-gray-400 mb-2">Active Runtime Intelligence System</p>
-          <div className="flex justify-center">
-            <StatusBadge status="active" label="Active Runtime" />
-          </div>
-        </motion.section>
+          <h1 className="heading-2 mb-4">REDEN Runtime Module</h1>
+          <p className="text-gray-400 text-lg">
+            Primary runtime environment for DCORE infrastructure execution
+          </p>
+        </motion.div>
 
-        {/* Core Infrastructure */}
-        <motion.section
-          variants={container}
+        <motion.div
+          variants={containerVariants}
           initial="hidden"
-          animate="show"
-          className="mb-20"
+          animate="visible"
+          className="space-y-8"
         >
-          <motion.h2 variants={item} className="text-3xl font-bold glow-text mb-12">
-            Core Infrastructure
-          </motion.h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {[
-              {
-                name: "Runtime Engine",
-                description: "High-performance execution layer with adaptive optimization",
-              },
-              {
-                name: "API Infrastructure",
-                description: "Scalable REST and GraphQL APIs with real-time capabilities",
-              },
-              {
-                name: "SDK Framework",
-                description: "Multi-language SDKs for seamless integration",
-              },
-              {
-                name: "Analytics Pipeline",
-                description: "Real-time metrics, monitoring, and intelligent insights",
-              },
-            ].map((component) => (
-              <motion.div key={component.name} variants={item}>
-                <GlassCard hover>
-                  <h3 className="text-lg font-bold mb-2">{component.name}</h3>
-                  <p className="text-gray-400 text-sm">{component.description}</p>
-                </GlassCard>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
+          <motion.div variants={itemVariants}>
+            <GlassCard>
+              <div className="flex justify-between items-start mb-4">
+                <h3 className="heading-3">Runtime Status</h3>
+                <StatusBadge status="active" label="Operational" />
+              </div>
+              <p className="text-gray-300 mb-6">
+                REDEN is the core runtime module responsible for executing all infrastructure operations with maximum efficiency and reliability.
+              </p>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="bg-blue-500/10 p-4 rounded-lg">
+                  <p className="text-sm text-gray-400 mb-2">CPU Usage</p>
+                  <p className="text-2xl text-dcore-blue font-bold">45%</p>
+                </div>
+                <div className="bg-blue-500/10 p-4 rounded-lg">
+                  <p className="text-sm text-gray-400 mb-2">Memory</p>
+                  <p className="text-2xl text-dcore-blue font-bold">2.3 GB</p>
+                </div>
+                <div className="bg-blue-500/10 p-4 rounded-lg">
+                  <p className="text-sm text-gray-400 mb-2">Uptime</p>
+                  <p className="text-2xl text-dcore-blue font-bold">99.98%</p>
+                </div>
+                <div className="bg-blue-500/10 p-4 rounded-lg">
+                  <p className="text-sm text-gray-400 mb-2">Active Tasks</p>
+                  <p className="text-2xl text-dcore-blue font-bold">1,247</p>
+                </div>
+              </div>
+            </GlassCard>
+          </motion.div>
 
-        {/* Developer Resources */}
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mb-20"
-        >
-          <h2 className="text-3xl font-bold glow-text mb-12">Developer Resources</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { icon: "📚", label: "Documentation", desc: "Complete API & SDK guides" },
-              { icon: "🔧", label: "SDKs", desc: "Multiple language support" },
-              { icon: "⚙️", label: "Configuration", desc: "Runtime optimization" },
-            ].map((resource, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <GlassCard hover>
-                  <p className="text-4xl mb-3">{resource.icon}</p>
-                  <h3 className="font-bold mb-2">{resource.label}</h3>
-                  <p className="text-gray-400 text-sm">{resource.desc}</p>
-                </GlassCard>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* Pricing */}
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl font-bold glow-text mb-12">Infrastructure Pricing</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                tier: "Startup",
-                price: "$99",
-                desc: "/month",
-                features: ["Up to 1M requests", "Basic Analytics", "Community Support"],
-              },
-              {
-                tier: "Professional",
-                price: "$499",
-                desc: "/month",
-                features: ["Up to 50M requests", "Advanced Analytics", "Priority Support"],
-                featured: true,
-              },
-              {
-                tier: "Enterprise",
-                price: "Custom",
-                desc: "for your scale",
-                features: ["Unlimited requests", "24/7 Support", "Dedicated Infrastructure"],
-              },
-            ].map((plan, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <GlassCard hover className={plan.featured ? "ring-2 ring-blue-500" : ""}>
-                  <h3 className="text-2xl font-bold mb-2">{plan.tier}</h3>
-                  <p className="text-3xl font-bold glow-text mb-1">{plan.price}</p>
-                  <p className="text-gray-400 text-sm mb-6">{plan.desc}</p>
-                  <ul className="space-y-3 mb-6">
-                    {plan.features.map((feat, j) => (
-                      <li key={j} className="flex gap-2 text-sm text-gray-300">
-                        <span className="text-blue-400">✓</span>
-                        {feat}
-                      </li>
-                    ))}
-                  </ul>
-                  <button className="w-full px-4 py-2 bg-blue-600/20 hover:bg-blue-600/40 border border-blue-500/30 rounded-lg font-medium text-blue-300 transition-colors">
-                    Get Started
-                  </button>
-                </GlassCard>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
+          <motion.div variants={itemVariants}>
+            <GlassCard>
+              <h3 className="heading-3 mb-6">Core Features</h3>
+              <div className="space-y-4">
+                {[
+                  'Real-time execution monitoring',
+                  'Advanced resource management',
+                  'Automatic scaling capabilities',
+                  'Intelligent task scheduling',
+                  'Comprehensive error handling',
+                  'Performance optimization',
+                ].map((feature, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-dcore-blue rounded-full"></div>
+                    <span className="text-gray-300">{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </GlassCard>
+          </motion.div>
+        </motion.div>
       </div>
     </div>
-  );
+  )
 }

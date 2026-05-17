@@ -1,52 +1,43 @@
-"use client";
+'use client'
 
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion'
 
 interface IntelligenceNodeProps {
-  size?: "sm" | "md" | "lg";
-  className?: string;
+  x?: number
+  y?: number
+  size?: number
+  delay?: number
 }
 
 export function IntelligenceNode({
-  size = "md",
-  className = "",
+  x = 50,
+  y = 50,
+  size = 20,
+  delay = 0,
 }: IntelligenceNodeProps) {
-  const sizeClasses = {
-    sm: "w-12 h-12",
-    md: "w-16 h-16",
-    lg: "w-24 h-24",
-  };
-
-  const innerSize = {
-    sm: "w-6 h-6",
-    md: "w-8 h-8",
-    lg: "w-12 h-12",
-  };
-
   return (
     <motion.div
-      className={`${sizeClasses[size]} relative ${className}`}
-      animate={{ rotate: 360 }}
-      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay, duration: 0.5 }}
+      className="absolute pointer-events-none"
+      style={{
+        left: `${x}%`,
+        top: `${y}%`,
+        transform: 'translate(-50%, -50%)',
+      }}
     >
-      {/* Outer glow ring */}
       <motion.div
-        className="absolute inset-0 rounded-full border border-blue-400/30"
-        animate={{ opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 3, repeat: Infinity }}
+        animate={{
+          boxShadow: [
+            `0 0 ${size}px rgba(59, 130, 246, 0.5)`,
+            `0 0 ${size * 2}px rgba(59, 130, 246, 0.8)`,
+            `0 0 ${size}px rgba(59, 130, 246, 0.5)`,
+          ],
+        }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="w-2 h-2 bg-dcore-blue rounded-full"
       />
-
-      {/* Middle ring */}
-      <div className="absolute inset-1 rounded-full border border-blue-500/20" />
-
-      {/* Core */}
-      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 shadow-lg shadow-blue-500/50 flex items-center justify-center">
-        <motion.div
-          className={`${innerSize[size]} bg-white rounded-full opacity-90`}
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-      </div>
     </motion.div>
-  );
+  )
 }

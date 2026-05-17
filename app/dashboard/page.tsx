@@ -1,168 +1,119 @@
-"use client";
+'use client'
 
-import { motion } from "framer-motion";
-import { GlassCard } from "@/components/ui/glass-card";
-import { StatusBadge } from "@/components/ui/status-badge";
+import { motion } from 'framer-motion'
+import { GlassCard } from '@/components/ui/glass-card'
+import { StatusBadge } from '@/components/ui/status-badge'
 
-const container = {
+const metrics = [
+  { label: 'Total Requests', value: '1.2M', trend: '+12%' },
+  { label: 'Active Users', value: '45.2K', trend: '+8%' },
+  { label: 'Uptime', value: '99.98%', trend: '+0.02%' },
+  { label: 'Avg Response', value: '120ms', trend: '-15%' },
+]
+
+const containerVariants = {
   hidden: { opacity: 0 },
-  show: {
+  visible: {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
       delayChildren: 0.2,
     },
   },
-};
+}
 
-const item = {
+const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 },
+  },
+}
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-screen pt-24 pb-12">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
+    <div className="relative min-h-screen pt-32 pb-20">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <h1 className="text-4xl font-bold glow-text mb-2">Operational Dashboard</h1>
-          <p className="text-gray-400">Real-time infrastructure intelligence and metrics</p>
+          <h1 className="heading-2 mb-2">Operational Dashboard</h1>
+          <p className="text-gray-400">Real-time infrastructure metrics and analytics</p>
         </motion.div>
 
-        {/* Key Metrics */}
+        {/* Metrics Grid */}
         <motion.div
-          variants={container}
+          variants={containerVariants}
           initial="hidden"
-          animate="show"
-          className="grid md:grid-cols-4 gap-4 mb-12"
+          animate="visible"
+          className="grid md:grid-cols-4 gap-4 mb-8"
         >
-          {[
-            { label: "Active Systems", value: "5", change: "+2 this week" },
-            { label: "Uptime", value: "99.9%", change: "Excellent" },
-            { label: "Requests/sec", value: "1.2M", change: "+15% ↑" },
-            { label: "Avg Latency", value: "45ms", change: "-3% ↓" },
-          ].map((metric, i) => (
-            <motion.div key={i} variants={item}>
+          {metrics.map((metric, i) => (
+            <motion.div key={i} variants={itemVariants}>
               <GlassCard>
-                <p className="text-gray-400 text-sm mb-2">{metric.label}</p>
-                <p className="text-3xl font-bold glow-text mb-1">{metric.value}</p>
-                <p className="text-xs text-gray-500">{metric.change}</p>
+                <p className="text-sm text-gray-400 mb-2">{metric.label}</p>
+                <div className="flex justify-between items-end">
+                  <p className="text-3xl font-bold text-dcore-blue">{metric.value}</p>
+                  <span className="text-sm text-green-400">{metric.trend}</span>
+                </div>
               </GlassCard>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-3 gap-6">
-          {/* Left Column */}
-          <motion.div
-            variants={container}
-            initial="hidden"
-            animate="show"
-            className="lg:col-span-2 space-y-6"
-          >
-            {/* Active Deployments */}
-            <motion.div variants={item}>
-              <h2 className="text-xl font-bold glow-text mb-4">Active Deployments</h2>
-              <GlassCard>
-                <div className="space-y-4">
-                  {[
-                    { name: "REDEN-prod", status: "active", version: "v2.4.1" },
-                    { name: "ORBIT-staging", status: "experimental", version: "v1.2.0" },
-                    { name: "VEKTOR-internal", status: "internal", version: "v3.1.2" },
-                  ].map((deploy, i) => (
-                    <div key={i} className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10">
-                      <div>
-                        <p className="font-medium">{deploy.name}</p>
-                        <p className="text-xs text-gray-400">{deploy.version}</p>
-                      </div>
-                      <StatusBadge status={deploy.status as any} />
-                    </div>
-                  ))}
-                </div>
-              </GlassCard>
-            </motion.div>
-
-            {/* System Health */}
-            <motion.div variants={item}>
-              <h2 className="text-xl font-bold glow-text mb-4">System Health</h2>
-              <GlassCard>
-                <div className="space-y-4">
-                  {[
-                    { component: "API Gateway", health: 95 },
-                    { component: "Runtime Engine", health: 92 },
-                    { component: "Analytics Pipeline", health: 88 },
-                  ].map((comp, i) => (
-                    <div key={i}>
-                      <div className="flex justify-between mb-2">
-                        <span className="text-sm">{comp.component}</span>
-                        <span className="text-sm font-medium text-green-400">{comp.health}%</span>
-                      </div>
-                      <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"
-                          style={{ width: `${comp.health}%` }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </GlassCard>
-            </motion.div>
+        {/* Status Overview */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid md:grid-cols-2 gap-8"
+        >
+          <motion.div variants={itemVariants}>
+            <GlassCard>
+              <h3 className="heading-3 mb-6">System Status</h3>
+              <div className="space-y-3">
+                {[
+                  { name: 'API Server', status: 'active' },
+                  { name: 'Database', status: 'active' },
+                  { name: 'Cache Layer', status: 'active' },
+                  { name: 'Load Balancer', status: 'active' },
+                ].map((item, i) => (
+                  <div key={i} className="flex justify-between items-center">
+                    <span className="text-gray-300">{item.name}</span>
+                    <StatusBadge status={item.status as any} label="Running" />
+                  </div>
+                ))}
+              </div>
+            </GlassCard>
           </motion.div>
 
-          {/* Right Column */}
-          <motion.div variants={container} initial="hidden" animate="show" className="space-y-6">
-            {/* Quick Stats */}
-            <motion.div variants={item}>
-              <h2 className="text-xl font-bold glow-text mb-4">Performance</h2>
-              <GlassCard>
-                <div className="space-y-4">
-                  {[
-                    { label: "Response Time", value: "45ms", icon: "⚡" },
-                    { label: "Error Rate", value: "0.02%", icon: "✓" },
-                    { label: "CPU Usage", value: "34%", icon: "📊" },
-                  ].map((stat, i) => (
-                    <div key={i} className="flex items-center justify-between p-2 bg-white/5 rounded">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xl">{stat.icon}</span>
-                        <span className="text-sm">{stat.label}</span>
-                      </div>
-                      <span className="font-medium text-blue-400">{stat.value}</span>
+          <motion.div variants={itemVariants}>
+            <GlassCard>
+              <h3 className="heading-3 mb-6">Recent Activities</h3>
+              <div className="space-y-3">
+                {[
+                  'Database backup completed',
+                  'Security update deployed',
+                  'Cache invalidated',
+                  'Load scaling triggered',
+                ].map((activity, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-dcore-blue rounded-full mt-2"></div>
+                    <div>
+                      <p className="text-gray-300">{activity}</p>
+                      <p className="text-xs text-gray-500">2 minutes ago</p>
                     </div>
-                  ))}
-                </div>
-              </GlassCard>
-            </motion.div>
-
-            {/* Activity Feed */}
-            <motion.div variants={item}>
-              <h2 className="text-xl font-bold glow-text mb-4">Recent Activity</h2>
-              <GlassCard>
-                <div className="space-y-3 max-h-64 overflow-y-auto">
-                  {[
-                    { event: "Deployment", service: "REDEN-prod", time: "2 min ago" },
-                    { event: "Alert Resolved", service: "VEKTOR", time: "15 min ago" },
-                    { event: "Scaling Event", service: "ORBIT", time: "1 hour ago" },
-                  ].map((activity, i) => (
-                    <div key={i} className="text-xs border-l-2 border-blue-500/30 pl-3 py-2">
-                      <p className="font-medium text-blue-400">{activity.event}</p>
-                      <p className="text-gray-400">{activity.service}</p>
-                      <p className="text-gray-500">{activity.time}</p>
-                    </div>
-                  ))}
-                </div>
-              </GlassCard>
-            </motion.div>
+                  </div>
+                ))}
+              </div>
+            </GlassCard>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </div>
-  );
+  )
 }

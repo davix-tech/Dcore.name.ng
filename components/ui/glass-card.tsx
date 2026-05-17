@@ -1,34 +1,24 @@
-import React from "react";
+'use client'
+
+import { ReactNode } from 'react'
+import { motion } from 'framer-motion'
 
 interface GlassCardProps {
-  children: React.ReactNode;
-  size?: "sm" | "md" | "lg";
-  className?: string;
-  hover?: boolean;
+  children: ReactNode
+  className?: string
+  hover?: boolean
 }
 
-export function GlassCard({
-  children,
-  size = "md",
-  className = "",
-  hover = true,
-}: GlassCardProps) {
-  const sizeClasses = {
-    sm: "p-4",
-    md: "p-6",
-    lg: "p-8",
-  };
-
+export function GlassCard({ children, className = '', hover = true }: GlassCardProps) {
   return (
-    <div
-      className={`
-        glass-lg
-        ${sizeClasses[size]}
-        ${hover ? "hover:bg-white/[0.12] hover:shadow-glow transition-all duration-300" : ""}
-        ${className}
-      `}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      whileHover={hover ? { y: -5, boxShadow: '0 20px 40px rgba(59, 130, 246, 0.2)' } : {}}
+      className={`glass rounded-2xl p-6 md:p-8 ${className}`}
     >
       {children}
-    </div>
-  );
+    </motion.div>
+  )
 }

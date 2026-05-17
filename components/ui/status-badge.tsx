@@ -1,45 +1,37 @@
+'use client'
+
+import { motion } from 'framer-motion'
+
 interface StatusBadgeProps {
-  status: "active" | "experimental" | "development" | "internal";
-  label?: string;
+  status: 'active' | 'inactive' | 'pending'
+  label: string
 }
 
-const statusConfig = {
-  active: {
-    bg: "bg-emerald-500/20",
-    border: "border-emerald-500/40",
-    text: "text-emerald-300",
-    dot: "bg-emerald-500",
-  },
-  experimental: {
-    bg: "bg-amber-500/20",
-    border: "border-amber-500/40",
-    text: "text-amber-300",
-    dot: "bg-amber-500",
-  },
-  development: {
-    bg: "bg-blue-500/20",
-    border: "border-blue-500/40",
-    text: "text-blue-300",
-    dot: "bg-blue-500",
-  },
-  internal: {
-    bg: "bg-purple-500/20",
-    border: "border-purple-500/40",
-    text: "text-purple-300",
-    dot: "bg-purple-500",
-  },
-};
+const statusColors = {
+  active: 'bg-green-500/20 border-green-500 text-green-400',
+  inactive: 'bg-red-500/20 border-red-500 text-red-400',
+  pending: 'bg-yellow-500/20 border-yellow-500 text-yellow-400',
+}
+
+const indicatorColors = {
+  active: 'bg-green-500',
+  inactive: 'bg-red-500',
+  pending: 'bg-yellow-500',
+}
 
 export function StatusBadge({ status, label }: StatusBadgeProps) {
-  const config = statusConfig[status];
-  const displayLabel = label || status.charAt(0).toUpperCase() + status.slice(1);
-
   return (
-    <div
-      className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border ${config.bg} ${config.border} ${config.text}`}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border ${statusColors[status]}`}
     >
-      <div className={`w-2 h-2 rounded-full ${config.dot} animate-pulse`} />
-      {displayLabel}
-    </div>
-  );
+      <motion.div
+        animate={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className={`w-2 h-2 rounded-full ${indicatorColors[status]}`}
+      />
+      <span className="text-sm font-medium">{label}</span>
+    </motion.div>
+  )
 }

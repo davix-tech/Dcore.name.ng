@@ -1,62 +1,45 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       colors: {
-        "dark-950": "#0a0e27",
-        "dark-900": "#050810",
-        "slate-950": "#0f172a",
-      },
-      backdropBlur: {
-        xs: "2px",
-        sm: "4px",
-      },
-      keyframes: {
-        "glow-pulse": {
-          "0%, 100%": { opacity: "0.4" },
-          "50%": { opacity: "0.8" },
-        },
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        "slide-in-left": {
-          from: { transform: "translateX(-100%)", opacity: "0" },
-          to: { transform: "translateX(0)", opacity: "1" },
-        },
-        "slide-in-right": {
-          from: { transform: "translateX(100%)", opacity: "0" },
-          to: { transform: "translateX(0)", opacity: "1" },
-        },
-        "fade-in": {
-          from: { opacity: "0" },
-          to: { opacity: "1" },
-        },
-        "scale-in": {
-          from: { transform: "scale(0.95)", opacity: "0" },
-          to: { transform: "scale(1)", opacity: "1" },
-        },
+        'dcore-dark': '#0a0e27',
+        'dcore-dark-alt': '#0f1535',
+        'dcore-blue': '#3b82f6',
+        'dcore-blue-glow': '#60a5fa',
+        'dcore-graphite': '#1f2937',
       },
       animation: {
-        "glow-pulse": "glow-pulse 3s ease-in-out infinite",
-        float: "float 4s ease-in-out infinite",
-        "slide-in-left": "slide-in-left 0.5s ease-out",
-        "slide-in-right": "slide-in-right 0.5s ease-out",
-        "fade-in": "fade-in 0.5s ease-out",
-        "scale-in": "scale-in 0.4s ease-out",
+        'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'float': 'float 6s ease-in-out infinite',
+        'shimmer': 'shimmer 3s linear infinite',
       },
-      boxShadow: {
-        glow: "0 0 20px rgba(59, 130, 246, 0.3)",
-        "glow-lg": "0 0 40px rgba(59, 130, 246, 0.2)",
+      keyframes: {
+        'pulse-glow': {
+          '0%, 100%': { opacity: '1', boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)' },
+          '50%': { opacity: '.8', boxShadow: '0 0 40px rgba(59, 130, 246, 0.8)' },
+        },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-20px)' },
+        },
+        'shimmer': {
+          '0%': { backgroundPosition: '-1000px 0' },
+          '100%': { backgroundPosition: '1000px 0' },
+        },
+      },
+      backdropBlur: {
+        xs: '2px',
       },
     },
   },
   plugins: [],
-};
+}
 
-export default config;
+export default config
