@@ -76,12 +76,8 @@ export default function ContactPage() {
         />
       </div>
 
-      {/* Ambient Runtime Glow */}
+      {/* Ambient Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-blue-500/10 blur-[160px] rounded-full pointer-events-none" />
-
-      {/* Floating Runtime Nodes */}
-      <div className="absolute top-24 left-20 w-3 h-3 rounded-full bg-blue-500 runtime-pulse opacity-70" />
-      <div className="absolute bottom-32 right-24 w-2 h-2 rounded-full bg-blue-400 runtime-pulse opacity-50" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Hero */}
@@ -100,7 +96,7 @@ export default function ContactPage() {
           className="mb-20"
         >
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-3 h-3 rounded-full bg-blue-500 runtime-pulse" />
+            <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse" />
 
             <span className="text-xs tracking-[0.35em] uppercase text-white/40">
               Infrastructure Communication Layer
@@ -126,12 +122,12 @@ export default function ContactPage() {
           animate="visible"
           className="grid grid-cols-1 xl:grid-cols-[420px_1fr] gap-8"
         >
-          {/* Left Infrastructure Panel */}
+          {/* Left Panel */}
           <motion.div
             variants={itemVariants}
             className="space-y-6"
           >
-            <GlassCard className="runtime-glow rounded-[32px] p-8">
+            <GlassCard className="rounded-[32px] p-8">
               <div className="text-xs tracking-[0.32em] uppercase text-white/35 mb-6">
                 Infrastructure Status
               </div>
@@ -148,7 +144,7 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="w-3 h-3 rounded-full bg-blue-500 runtime-pulse" />
+                  <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse" />
                 </div>
 
                 <div className="flex items-start justify-between">
@@ -162,7 +158,7 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="w-3 h-3 rounded-full bg-blue-500 runtime-pulse" />
+                  <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse" />
                 </div>
 
                 <div className="flex items-start justify-between">
@@ -218,37 +214,11 @@ export default function ContactPage() {
                 </div>
               </div>
             </GlassCard>
-
-            <GlassCard className="rounded-[32px] p-8">
-              <div className="text-xs tracking-[0.32em] uppercase text-white/35 mb-6">
-                Active Systems
-              </div>
-
-              <div className="space-y-4">
-                {[
-                  'REDEN Runtime',
-                  'ORBIT Experimental Layer',
-                  'AXIOM Infrastructure',
-                  'SYNAPSE Adaptive Systems',
-                ].map((system, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center justify-between"
-                  >
-                    <span className="text-white/70">
-                      {system}
-                    </span>
-
-                    <div className="w-2 h-2 rounded-full bg-blue-500 runtime-pulse" />
-                  </div>
-                ))}
-              </div>
-            </GlassCard>
           </motion.div>
 
-          {/* Contact Interface */}
+          {/* Contact Form */}
           <motion.div variants={itemVariants}>
-            <GlassCard className="runtime-glow rounded-[36px] p-8 md:p-10">
+            <GlassCard className="rounded-[36px] p-8 md:p-10">
               <div className="mb-10">
                 <div className="text-xs tracking-[0.32em] uppercase text-white/35 mb-5">
                   Operational Inquiry Interface
@@ -270,273 +240,71 @@ export default function ContactPage() {
                 className="space-y-6"
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm text-white/45 mb-3">
-                      Operator Identity
-                    </label>
-
-                    <input
-                      type="text"
-                      required
-                      value={formState.name}
-                      onChange={(e) =>
-                        setFormState({
-                          ...formState,
-                          name: e.target.value,
-                        })
-                      }
-                      placeholder="Infrastructure Operator"
-                      className="
-                        w-full h-14 rounded-2xl
-                        bg-white/[0.03]
-                        border border-white/10
-                        px-5
-                        text-white
-                        outline-none
-                        transition-all
-                        focus:border-blue-500
-                        focus:bg-blue-500/[0.04]
-                      "
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm text-white/45 mb-3">
-                      Runtime Email
-                    </label>
-
-                    <input
-                      type="email"
-                      required
-                      value={formState.email}
-                      onChange={(e) =>
-                        setFormState({
-                          ...formState,
-                          email: e.target.value,
-                        })
-                      }
-                      placeholder="operator@infrastructure.io"
-                      className="
-                        w-full h-14 rounded-2xl
-                        bg-white/[0.03]
-                        border border-white/10
-                        px-5
-                        text-white
-                        outline-none
-                        transition-all
-                        focus:border-blue-500
-                        focus:bg-blue-500/[0.04]
-                      "
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm text-white/45 mb-3">
-                    Communication Subject
-                  </label>
-
-                  <input
-                    type="text"
-                    required
-                    value={formState.subject}
-                    onChange={(e) =>
-                      setFormState({
-                        ...formState,
-                        subject: e.target.value,
-                      })
-                    }
-                    placeholder="Infrastructure Deployment Inquiry"
-                    className="
-                      w-full h-14 rounded-2xl
-                      bg-white/[0.03]
-                      border border-white/10
-                      px-5
-                      text-white
-                      outline-none
-                      transition-all
-                      focus:border-blue-500
-                      focus:bg-blue-500/[0.04]
-                    "
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm text-white/45 mb-3">
-                    Operational Message
-                  </label>
-
-                  <textarea
-                    required
-                    rows={7}
-                    value={formState.message}
-                    onChange={(e) =>
-                      setFormState({
-                        ...formState,
-                        message: e.target.value,
-                      })
-                    }
-                    placeholder="Describe infrastructure requirements, runtime objectives, deployment goals, or operational collaboration details..."
-                    className="
-                      w-full rounded-3xl
-                      bg-white/[0.03]
-                      border border-white/10
-                      px-5 py-5
-                      text-white
-                      outline-none
-                      resize-none
-                      transition-all
-                      focus:border-blue-500
-                      focus:bg-blue-500/[0.04]
-                    "
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="
-                    relative w-full h-16 rounded-2xl
-                    bg-blue-500
-                    text-white
-                    font-medium
-                    tracking-[-0.02em]
-                    overflow-hidden
-                    transition-all duration-300
-                    hover:shadow-[0_0_45px_rgba(37,99,235,0.35)]
-                    disabled:opacity-70
-                  "
-                >
-                  <span className="relative z-10">
-                    {isSubmitting
-                      ? 'Transmitting Infrastructure Inquiry...'
-                      : 'Transmit Operational Message'}
-                  </span>
-
-                  <motion.div
-                    animate={{
-                      x: ['-100%', '100%'],
-                    }}
-                    transition={{
-                      repeat: Infinity,
-                      duration: 2,
-                      ease: 'linear',
-                    }}
-                    className="
-                      absolute inset-0
-                      bg-gradient-to-r
-                      from-transparent
-                      via-white/10
-                      to-transparent
-                    "
-                  />
-                </button>
-              </form>
-            </GlassCard>
-          </motion.div>
-        </motion.div>
-      </div>
-    </div>
-  )
-      }    console.log('Form submitted:', formState)
-    alert('Thank you for your message! We will get back to you soon.')
-    setFormState({ name: '', email: '', subject: '', message: '' })
-  }
-
-  return (
-    <div className="relative min-h-screen pt-32 pb-20">
-      <div className="max-w-4xl mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-16"
-        >
-          <h1 className="heading-2 mb-4">Get In Touch</h1>
-          <p className="text-gray-400 text-lg">
-            Have questions? We would love to hear from you. Send us a message.
-          </p>
-        </motion.div>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid md:grid-cols-2 gap-8"
-        >
-          <motion.div variants={itemVariants}>
-            <GlassCard>
-              <h3 className="heading-3 mb-6">Contact Information</h3>
-              <div className="space-y-6">
-                <div>
-                  <p className="text-sm text-gray-400 mb-2">Email</p>
-                  <p className="text-gray-200">hello@dcore.ng</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-400 mb-2">Phone</p>
-                  <p className="text-gray-200">+234 (123) 456-7890</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-400 mb-2">Address</p>
-                  <p className="text-gray-200">Lagos, Nigeria</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-400 mb-2">Support Hours</p>
-                  <p className="text-gray-200">24/7 Available</p>
-                </div>
-              </div>
-            </GlassCard>
-          </motion.div>
-
-          <motion.div variants={itemVariants}>
-            <GlassCard>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-sm text-gray-300 mb-2">Name</label>
                   <input
                     type="text"
                     required
                     value={formState.name}
-                    onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                    className="w-full bg-black/30 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-dcore-blue"
-                    placeholder="Your name"
+                    onChange={(e) =>
+                      setFormState({
+                        ...formState,
+                        name: e.target.value,
+                      })
+                    }
+                    placeholder="Operator Identity"
+                    className="w-full h-14 rounded-2xl bg-white/[0.03] border border-white/10 px-5 text-white outline-none focus:border-blue-500"
                   />
-                </div>
-                <div>
-                  <label className="block text-sm text-gray-300 mb-2">Email</label>
+
                   <input
                     type="email"
                     required
                     value={formState.email}
-                    onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                    className="w-full bg-black/30 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-dcore-blue"
-                    placeholder="your@email.com"
+                    onChange={(e) =>
+                      setFormState({
+                        ...formState,
+                        email: e.target.value,
+                      })
+                    }
+                    placeholder="Runtime Email"
+                    className="w-full h-14 rounded-2xl bg-white/[0.03] border border-white/10 px-5 text-white outline-none focus:border-blue-500"
                   />
                 </div>
-                <div>
-                  <label className="block text-sm text-gray-300 mb-2">Subject</label>
-                  <input
-                    type="text"
-                    required
-                    value={formState.subject}
-                    onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
-                    className="w-full bg-black/30 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-dcore-blue"
-                    placeholder="Message subject"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm text-gray-300 mb-2">Message</label>
-                  <textarea
-                    required
-                    value={formState.message}
-                    onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                    rows={4}
-                    className="w-full bg-black/30 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-dcore-blue resize-none"
-                    placeholder="Your message"
-                  />
-                </div>
-                <button type="submit" className="btn-primary w-full">
-                  Send Message
+
+                <input
+                  type="text"
+                  required
+                  value={formState.subject}
+                  onChange={(e) =>
+                    setFormState({
+                      ...formState,
+                      subject: e.target.value,
+                    })
+                  }
+                  placeholder="Communication Subject"
+                  className="w-full h-14 rounded-2xl bg-white/[0.03] border border-white/10 px-5 text-white outline-none focus:border-blue-500"
+                />
+
+                <textarea
+                  required
+                  rows={7}
+                  value={formState.message}
+                  onChange={(e) =>
+                    setFormState({
+                      ...formState,
+                      message: e.target.value,
+                    })
+                  }
+                  placeholder="Operational Message"
+                  className="w-full rounded-3xl bg-white/[0.03] border border-white/10 px-5 py-5 text-white outline-none resize-none focus:border-blue-500"
+                />
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full h-16 rounded-2xl bg-blue-500 text-white font-medium transition-all duration-300 hover:shadow-[0_0_45px_rgba(37,99,235,0.35)] disabled:opacity-70"
+                >
+                  {isSubmitting
+                    ? 'Transmitting Infrastructure Inquiry...'
+                    : 'Transmit Operational Message'}
                 </button>
               </form>
             </GlassCard>
@@ -545,4 +313,4 @@ export default function ContactPage() {
       </div>
     </div>
   )
-}
+    }
